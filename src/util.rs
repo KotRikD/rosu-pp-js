@@ -98,5 +98,5 @@ impl<'de> de::Visitor<'de> for FieldVisitor {
 }
 
 pub fn deserialize_mods<'de, 'a, D: Deserializer<'de>>(d: D) -> Result<GameMods, D::Error> {
-    DeserializeSeed::deserialize(GameModsSeed::AllowMultipleModes, d)
+    DeserializeSeed::deserialize(GameModsSeed::AllowMultipleModes { deny_unknown_fields: false }, d)
 }
