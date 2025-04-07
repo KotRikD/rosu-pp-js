@@ -142,6 +142,11 @@ pub struct JsDifficultyAttributes {
     /// Only available for osu! and osu!catch.
     #[wasm_bindgen(readonly)]
     pub ar: Option<f64>,
+    /// The overall difficulty
+    ///
+    /// Only available for osu!.
+    #[wasm_bindgen(readonly)]
+    pub od: Option<f64>,
     /// The perceived hit window for an n300 inclusive of rate-adjusting mods
     /// (DT/HT/etc)
     ///
@@ -208,6 +213,7 @@ impl From<OsuDifficultyAttributes> for JsDifficultyAttributes {
             aim_difficult_strain_count: Some(aim_difficult_strain_count),
             speed_difficult_strain_count: Some(speed_difficult_strain_count),
             ar: Some(ar),
+            od: Some(attrs.od()),
             great_hit_window: Some(great_hit_window),
             ok_hit_window: Some(ok_hit_window),
             meh_hit_window: Some(meh_hit_window),
@@ -345,6 +351,7 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
             n_objects,
             n_hold_notes,
             ar,
+            od,
             great_hit_window,
             ok_hit_window,
             meh_hit_window,
